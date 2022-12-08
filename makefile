@@ -12,13 +12,13 @@ all:                    $(BIN)
 everything:             clean format lint analyze sanitize test vectors
 
 test:                   $(SRC)
-			$(CC) $(CFLAGS) test.c -o $@ 
+			$(CC) $(CFLAGS) $(SRC) -o $@ 
 
 debug:                  $(SRC) 
-			$(CC) $(CFLAGS) -g debug.c -o $@ -DDEBUG_SIPHASH
+			$(CC) $(CFLAGS) -g $(SRC) -o $@ -DDEBUG_SIPHASH
 
 vectors:                $(SRC) 
-			$(CC) $(CFLAGS) vectors.c -o $@ -DGETVECTORS
+			$(CC) $(CFLAGS) $(SRC) -o $@ -DGETVECTORS
 
 analyze:                $(SRC)
 			scan-build $(CC) $(CFLAGS) analyze.c -o $@
