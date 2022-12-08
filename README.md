@@ -1,3 +1,16 @@
+# What this is
+
+This is a copy of the HalfSipHash reference code, with a new `.c` program
+which generates the reference test vector output used by MaraDNS in
+HalfSipHash tests.
+
+To generate the reference test vectors:
+
+```
+make
+./maraAPI
+```
+
 # SipHash
 
 [![License:
