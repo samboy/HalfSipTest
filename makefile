@@ -2,7 +2,7 @@ CC=gcc
 CFLAGS=-Wall --std=c99 
 SRC=siphash.c halfsiphash.c test.c testmain.c
 HEADERS=siphash.h halfsiphash.h
-BIN=test debug vectors
+BIN=test debug vectors maraAPI
 
 .PHONY: analyze sanitize lint format clean  
 
@@ -19,6 +19,10 @@ debug:                  $(SRC)
 
 vectors:                $(SRC) 
 			$(CC) $(CFLAGS) $(SRC) -o $@ -DGETVECTORS
+
+maraAPI:		$(SRC) maraAPI.c
+			$(CC) $(CFLAGS) maraAPI.c halfsiphash.c \
+				-DcROUNDS=1 -DdROUNDS=3 -o $@
 
 analyze:                $(SRC)
 			scan-build $(CC) $(CFLAGS) analyze.c -o $@
