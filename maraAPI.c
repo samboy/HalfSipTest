@@ -42,4 +42,10 @@ int main() {
                 printf("%08x\n",
                        HalfSip13(test1,counter,0x03020100, 0x07060504));
         }
+        printf("Test #2: Inverted reference vectors\n");
+	for(counter = 0; counter < 64; counter++) {
+		test1[counter] = counter ^ 0xff;
+		printf("%08x\n",
+			 HalfSip13(test1,counter,0xfcfdfeff, 0xf8f9fafb));
+	}
 }
